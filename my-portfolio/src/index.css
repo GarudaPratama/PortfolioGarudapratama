@@ -9,3 +9,55 @@
 body {
   font-family: var(--font-display);
 }
+
+/* Custom utilities for ripple */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0.6;
+  pointer-events: none;
+  transition: transform 600ms ease-out, opacity 900ms ease-out;
+  background: rgba(255,255,255,0.3);
+}
+
+.ripple:active::after {
+  transform: scale(10);
+  opacity: 0;
+  transition: 0s;
+}
+
+/* Small accessible focus */
+:focus {
+  outline: 3px solid rgba(59,130,246,0.25);
+  outline-offset: 2px;
+}
+
+/* Parallax helper */
+.parallax {
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(6px);
+}
+
+/* ensure particle canvas sits behind everything */
+#tsparticles {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+}
+
+/* small responsive tweaks */
+@media (max-width: 768px) {
+  .hide-md { display: none; }
+}
