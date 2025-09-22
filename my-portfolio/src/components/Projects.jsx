@@ -2,21 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const projects = [
-  {
-    title: "Portfolio Website",
-    desc: "Website pribadi dengan animasi interaktif",
-    img: "/project1.png",
-  },
-  {
-    title: "E-commerce UI",
-    desc: "Frontend e-commerce modern dengan React & Tailwind",
-    img: "/project2.png",
-  },
-  {
-    title: "Dashboard App",
-    desc: "Dashboard interaktif dengan chart dan data real-time",
-    img: "/project3.png",
-  },
+  { title: "Portfolio Website", desc: "Website pribadi dengan animasi interaktif", img: "https://via.placeholder.com/400x200" },
+  { title: "E-commerce UI", desc: "Frontend e-commerce modern dengan React & Tailwind", img: "https://via.placeholder.com/400x200" },
+  { title: "Dashboard App", desc: "Dashboard interaktif dengan chart dan data real-time", img: "https://via.placeholder.com/400x200" },
 ];
 
 const Projects = () => {
@@ -36,17 +24,17 @@ const Projects = () => {
           {projects.map((project, i) => (
             <motion.div
               key={project.title}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition transform"
+              className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg cursor-pointer 
+                hover:shadow-accent/40 hover:-translate-y-2 transition-all duration-300"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2 }}
               viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
             >
               <img src={project.img} alt={project.title} className="w-full h-40 object-cover" />
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  {project.title}
-                </h3>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{project.title}</h3>
                 <p className="mt-2 text-gray-700 dark:text-gray-300">{project.desc}</p>
               </div>
             </motion.div>

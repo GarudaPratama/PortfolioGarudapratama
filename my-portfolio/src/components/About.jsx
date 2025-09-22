@@ -15,36 +15,38 @@ const About = () => {
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Foto */}
           <motion.img
-            src="/profile.jpg"
+            src="./garuda.png"
             alt="Garuda"
-            className="rounded-2xl shadow-lg"
+            className="w-40 h-40 md:w-56 md:h-56 rounded-full object-cover shadow-lg border-4 border-accent hover:scale-105 transition-transform"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           />
 
-          {/* Text */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
             <p className="text-lg leading-relaxed text-gray-900 dark:text-gray-100">
-              Gue Garuda — frontend developer fokus bikin UI yang rapi, cepat,
-              dan enak dipakai. Gue suka eksplorasi animasi, micro-interaction,
-              dan bikin kode yang gampang dirawat. Kalau lu cari frontend dev
-              yang peka sama UX, kita bisa kerja bareng.
+              Gue Garuda — frontend developer fokus bikin UI yang rapi, cepat, dan enak dipakai.
+              Suka eksplorasi animasi, micro-interaction, dan bikin kode yang gampang dirawat.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-4">
-              <div className="px-4 py-2 bg-gray-800 text-blue-400 rounded-lg shadow">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="px-4 py-2 bg-gray-800 text-blue-400 rounded-lg shadow hover:shadow-accent/40"
+              >
                 3+ years building interfaces
-              </div>
-              <div className="px-4 py-2 bg-gray-800 text-blue-400 rounded-lg shadow">
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="px-4 py-2 bg-gray-800 text-blue-400 rounded-lg shadow hover:shadow-accent/40"
+              >
                 React, Tailwind, Animation
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>

@@ -5,67 +5,78 @@ import { Moon, Sun } from "lucide-react";
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Cek preferensi awal user
+  // pas pertama kali load, cek localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    if (savedTheme === "dark") {
       setDarkMode(true);
       document.documentElement.classList.add("dark");
+    } else {
+      setDarkMode(false);
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 
-  // Ganti theme tiap kali toggle
-  useEffect(() => {
+  // toggle theme
+  const toggleTheme = () => {
     if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
+      setDarkMode(false);
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setDarkMode(true);
     }
-  }, [darkMode]);
+  };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-gray-700 text-white shadow-lg z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <motion.div
-          className="flex items-center space-x-2"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-        >
-          <div className="bg-blue-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center">
-            G
-          </div>
-          <span className="text-xl font-semibold">Garuda</span>
-        </motion.div>
+    <motion.nav
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-gray-950/70 backdrop-blur-md shadow-md"
+    >
+      <div className="max-w-6xl mx-auto flex justify-between items-center py-4 px-6">
+       {/* Logo */}
+<motion.a
+  href="#hero"
+  className="flex items-center gap-2"
+  whileHover={{ scale: 1.05 }}
+>
+  <motion.img
+    src="/Lucid_Origin_Typography_logo_Garuda_in_futuristic_neon_style_w_0-removebg-preview.png" // pastikan ada di folder public/
+    alt="Garuda Logo"
+    className="h-12 w-auto object-contain" // tinggi fix, lebar otomatis
+    whileHover={{ rotate: -2, scale: 1.05 }}
+    transition={{ type: "spring", stiffness: 300 }}
+  />
+</motion.a>
 
-        {/* Links */}
-        <div className="hidden md:flex space-x-6">
-          {["Hero", "About", "Skills", "Projects", "Contact"].map((item, i) => (
-            <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="hover:text-blue-400 transition-colors"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              {item}
-            </motion.a>
-          ))}
+
+        {/* Menu */}
+        <div className="hidden md:flex gap-6 text-gray-800 dark:text-gray-200">
+          <a href="#about" className="hover:text-accent transition">About</a>
+          <a href="#projects" className="hover:text-accent transition">Projects</a>
+          <a href="#skills" className="hover:text-accent transition">Skills</a>
+          <a href="#contact" className="hover:text-accent transition">Contact</a>
         </div>
 
         {/* Dark Mode Toggle */}
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="p-2 rounded-full hover:bg-gray-600 transition"
-          aria-label="Toggle Dark Mode"
+        <motion.button
+          whileHover={{ rotate: 15, scale: 1.1 }}
+          whileTap={{ scale: 0.9, rotate: -15 }}
+          onClick={toggleTheme}
+          className="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-800 shadow"
         >
-          {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-        </button>
+          {darkMode ? (
+            <Sun className="text-yellow-400 w-5 h-5" />
+          ) : (
+            <Moon className="text-gray-900 dark:text-gray-100 w-5 h-5" />
+          )}
+        </motion.button>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
