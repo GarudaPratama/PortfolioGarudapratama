@@ -45,7 +45,7 @@ const Navbar = () => {
   whileHover={{ scale: 1.05 }}
 >
   <motion.img
-    src="logo-garuda.jpg.jpg" // pastikan ada di folder public/
+    src="./logo-garuda.jpg.jpg" // pastikan ada di folder public/
     alt="Garuda Logo"
     className="h-12 w-auto object-contain" // tinggi fix, lebar otomatis
     whileHover={{ rotate: -2, scale: 1.05 }}
